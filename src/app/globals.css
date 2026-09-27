@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #f7f6f2;
+  --surface: #ffffff;
+  --foreground: #1b1b1a;
+  --muted: #6d6c67;
+  --border: #e3e1da;
+  --accent: #0d7a69;
+  --accent-soft: #e2f0ec;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #111211;
+    --surface: #1a1b1a;
+    --foreground: #ecebe6;
+    --muted: #9c9b95;
+    --border: #2d2e2b;
+    --accent: #45c2aa;
+    --accent-soft: #163029;
+    --danger: #f97066;
+    --danger-soft: #3a1714;
   }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Markdown answer styles (Tailwind's reset strips list bullets, margins, etc.) */
+.answer {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.answer > * + * {
+  margin-top: 0.9em;
+}
+.answer ul {
+  list-style: disc;
+  padding-left: 1.4em;
+}
+.answer ol {
+  list-style: decimal;
+  padding-left: 1.4em;
+}
+.answer li + li {
+  margin-top: 0.35em;
+}
+.answer h1,
+.answer h2,
+.answer h3,
+.answer h4 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-top: 1.4em;
+}
+.answer strong {
+  font-weight: 600;
+}
+.answer code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.answer pre {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9em 1em;
+}
+.answer pre code {
+  background: none;
+  padding: 0;
+}
+.answer blockquote {
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  padding-left: 0.9em;
+}
+.answer table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92em;
+  display: block;
+  overflow-x: auto;
+}
+.answer th,
+.answer td {
+  border: 1px solid var(--border);
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+.answer a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Citation chips: [1] → a small numbered pill linking to the source */
+.answer a.cite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  margin: 0 0.12rem;
+  padding: 0 0.32rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: 0.12em;
+}
+.answer a.cite:hover {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
